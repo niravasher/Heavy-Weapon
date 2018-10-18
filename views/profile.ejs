@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>OAuth</title>
+        <script src="/p5.js"></script>
+        <script src="/p5.dom.js"></script>
+        <script src="/sketch.js"></script>
+        <script src="/paddle.js"></script>
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+            }
+            body{
+                font-family: arial;
+                margin: 0;
+            }
+            nav{
+                position: absolute;
+                top: 1%;
+                left: 94%;
+                background: white;
+                color: black;
+            }
+            nav ul{
+                max-width: 960px;
+                margin: 0 auto;
+                padding: 0;
+            }
+            nav li{
+                list-style-type: none;
+                display: inline-block;
+                color: black;
+            }
+            nav a{
+                font-size: 18px;
+                text-decoration: none;
+                padding: 10px;
+                display: block;
+            }
+            main, header{
+                max-width: 960px;
+                margin: 30px auto;
+                padding: 0 10px;
+                color: #333;
+            }
+        </style>
+    </head>
+    <body>
+        <nav>
+            <ul>
+                <li><a href="/auth/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </body>
+</html>
