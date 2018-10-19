@@ -1,7 +1,7 @@
 const express = require("express");
 const authRoutes = require('./routes/auth-routes');
 const passportSetup = require('./config/passport-setup');
-
+const port = process.env.PORT || 3105;
 const app = express();
 
 app.use(express.static('./static'));
@@ -16,6 +16,6 @@ app.get('/', (req, res) => {
     res.render('home');
 });
 
-app.listen(3105, () => {
-    console.log("Now listening for requests on port 3105");
+app.listen(port, () => {
+    console.log(`Now listening for requests on port ${port}`);
 });

@@ -1,26 +1,55 @@
-var tank;
+var bullets = [];
+var balls = [];
 
 function setup() {
-    createCanvas(window.innerWidth, window.innerHeight);
-    tank = new Tank();
+    createCanvas(windowWidth, windowHeight);
 }
 
 function draw() {
     background(0);
-    tank.display();
-    tank.update();
-}
+    player.draw();
 
-function keyPressed() {
-    if (key === 'a' || key === 'A') {
-        tank.isMovingLeft = true;
+    if(keyIsDown(LEFT_ARROW)) {
+        if(player.x - 10 >= 0) {
+            player.x -= 10;
+        }
+        else {
+            player.x = 0;
+        }
     }
-    else if (key === 'd' || key === 'D') {
-        tank.isMovingRight = true;
+    if(keyIsDown(RIGHT_ARROW)) {
+        if(player.x + 10 < windowWidth - player.width) {
+            player.x += 10;
+        }
+        else {
+            player.x = windowWidth - player.width;
+        }
     }
-}
 
-function keyReleased() {
-    tank.isMovingLeft = false;
-    tank.isMovingRight = false;
+    if(keyIsDown(32)) {
+        bullets.push(Bullet({}));
+    }
+
+    bullets.forEach(function(bullet) {
+        bullet.update();
+        bullet.draw();
+    });
+
+    bullets = bullets.filter(function(bullet) {
+        return bullet.active;
+    });
+
+    if (Math.random() < 0.01) {
+        balls.push(Ball({}));
+    }
+
+    balls.forEach(function(ball) {
+        ball.update();
+        ball.draw();
+        ball.checkEdges();
+    });
+
+    balls.forEach(function(ball) {
+        return ball.active;
+    });
 }
