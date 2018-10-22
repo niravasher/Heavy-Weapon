@@ -7,11 +7,7 @@ function Bullet(I) {
     I.height = 3;
 
     I.inBounds = function() {
-        return ((I.y >= 0) && I.y <= (windowHeight - I.height))
-    }
-
-    I.draw = function() {
-        rect(I.x, I.y, I.width, I.height);
+        return ((I.y >= 0) && I.y <= (windowHeight - I.height));
     }
 
     I.update = function() {
@@ -19,10 +15,8 @@ function Bullet(I) {
         I.y -= I.yvelocity;
     }
 
-    I.collides = function(balls) {
-        if (this.pos.y < balls.y && this.pos.y > (balls.y - this.radius) && this.pos.x > balls.x - this.radius && this.pos.x < (balls.x + (balls.radius*2) + this.width))
-            return true;
-        else return false;
+    I.draw = function() {
+        rect(I.x, I.y, I.width, I.height);
     }
     return I;
 }
