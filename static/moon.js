@@ -1,4 +1,4 @@
-function Ball(I) {
+function Moon(I) {
     var randomVariable = (Math.random(-1, 1) * 4);
     I.active = true;
     I.radius = 20;
@@ -6,7 +6,7 @@ function Ball(I) {
     I.direction = createVector(randomVariable, randomVariable);
     I.vel = createVector(random(-1,1), random(0, 1)).mult(5);
     I.draw = function() {
-        image(planets, I.pos.x, I.pos.y);
+        image(moon, I.pos.x, I.pos.y);
     }
 
     I.update = function() {
