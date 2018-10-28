@@ -1,6 +1,6 @@
 var player = {
     x: 680,
-    y: 650,
+    y: 600,
     width: 30,
     height: 40,
     draw: function(){
