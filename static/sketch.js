@@ -6,12 +6,13 @@ var booleane = 1;
 var ballBullet;
 var gameOver;
 var backGround;
-var bulletShoot;
 var planets;
 var moon;
 var lives = 3;
 var playingGame = true;
 var aeroplane;
+var ypos = 0;
+var ypos2 = -1.5 * 767;
 
 function Collision(enemy, bullet) {
     return bullet.x + bullet.width >= enemy.pos.x &&
@@ -24,8 +25,8 @@ function preload() {
     song = loadSound("/bullets.mp3");
     ballBullet = loadSound("/collision.mp3");
     gameOver = loadSound("/gameOver.mp3");
-    backGround = loadImage('/backgroundOasis.svg');
-    bulletShoot = loadImage('/BULLET.svg');
+    backGround = loadImage('/space3.png');
+    bulletShoot = loadImage('/laser-blast-png.png');
     planets = loadImage('/PLANET.svg');
     moon = loadImage('/moon.svg');
     aeroplane = loadImage('/plane3.svg');
@@ -40,13 +41,23 @@ function setup() {
         else {
             song.stop();
         }
-    }, 100);
+    }, 150);
 }
 
 function draw() {
+    // frameRate(30);
     if (playingGame) {
         background(0);
-        image(backGround, 0, 0, windowWidth, windowHeight);
+        image(backGround, 0, ypos, windowWidth, 1.5 * windowHeight);
+        image(backGround, 0, ypos2, windowWidth, 1.5 * windowHeight);
+        if (ypos >= windowHeight)
+            ypos = -(1.5 * windowHeight);
+        else
+            ypos += 0.3;
+        if (ypos2 > windowHeight)
+            ypos2 = -(1.5 * windowHeight);
+        else
+            ypos2 += 0.3;
         textSize(50);
         fill(255);
         textFont('Georgia');
@@ -81,29 +92,43 @@ function draw() {
             bullet.draw();
         });
 
-        if (score >= 30) {
-            if (Math.random() < 0.03) {
+        if (score >= 30 && score < 50) {
+            if (Math.random() < 0.02) {
                 balls.push(Ball({}));
                 balls.push(Moon({}));
             }
         }
 
-        else if (score >= 50) {
+        else if (score >= 50 && score < 100) {
             if (Math.random() < 0.04) {
                 balls.push(Ball({}));
                 balls.push(Moon({}));
             }
         }
 
-        else if (score >= 100) {
+        else if (score >= 100 && score < 200) {
             if (Math.random() < 0.05) {
                 balls.push(Ball({}));
                 balls.push(Moon({}));
             }
         }
 
-        else if (score >= 200) {
+        else if (score >= 200 && score < 300) {
             if (Math.random() < 0.075) {
+                balls.push(Ball({}));
+                balls.push(Moon({}));
+            }
+        }
+
+        else if (score >= 300) {
+            if (Math.random() < 0.15) {
+                balls.push(Ball({}));
+                balls.push(Moon({}));
+            }
+        }
+
+        else if (score >= 10) {
+            if (Math.random() < 0.03) {
                 balls.push(Ball({}));
                 balls.push(Moon({}));
             }
@@ -123,7 +148,6 @@ function draw() {
         balls.forEach(function(ball) {
             ball.update();
             ball.draw();
-            ball.checkEdges();
         });
 
         bullets.forEach(function(bullet) {

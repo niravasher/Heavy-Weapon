@@ -4,7 +4,7 @@ function Bullet(I) {
     I.y = player.y - 20;
     I.yvelocity = 8;
     I.width = 3;
-    I.height = 0;
+    I.height = 25;
 
     I.inBounds = function() {
         return ((I.y >= 0) && I.y <= (windowHeight - I.height));
@@ -16,7 +16,8 @@ function Bullet(I) {
     }
 
     I.draw = function() {
-        image(bulletShoot, I.x - 73, I.y - 100);
+        image(bulletShoot, I.x-12, I.y);
+        // rect(I.x, I.y, I.width, I.height);
     }
     return I;
 }
